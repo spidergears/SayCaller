@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
-    String TAG = "SayCaller.BootCompleted";
+    private String TAG = "SayCaller.BootCompleted";
 
     public BootCompletedReceiver() {
         Log.i(TAG, "Boot Completed.");

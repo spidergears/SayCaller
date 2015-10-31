@@ -34,7 +34,7 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class SayCallerSettingsActivity extends PreferenceActivity {
-    String TAG = "SayCallerSettingsActivity";
+    private String TAG = "SayCallerSettingsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,7 +10,7 @@ import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 
 public class SayCallerTTS extends Service implements TextToSpeech.OnInitListener {
-    String TAG = "SayCaller.SayCallerTTS";
+    private String TAG = "SayCaller.SayCallerTTS";
     public static TextToSpeech tts;
 
     public class LocalBinder extends Binder {

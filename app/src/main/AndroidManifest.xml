@@ -28,7 +28,6 @@
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
                 <action android:name="android.intent.action.PHONE_STATE" />
                 <action android:name="android.intent.action.PHONE_STATE_CHANGED" />
             </intent-filter>
@@ -44,6 +43,14 @@
             android:name=".BootCompletedReceiver"
             android:enabled="true"
             android:exported="true" >
+        </receiver>
+        <receiver
+            android:name=".OutgoingCallReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
         </receiver>
     </application>
 
