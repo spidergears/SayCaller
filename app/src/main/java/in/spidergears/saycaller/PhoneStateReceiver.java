@@ -23,10 +23,10 @@ public class PhoneStateReceiver extends BroadcastReceiver {
         try {
             String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
             Log.d(TAG, "CallState: " + state);
-            if (state.equals("RINGING")){
+            if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)){
                 String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                String name = findContactName(incomingNumber, context);
-                Toast.makeText(context, "Call from " + incomingNumber, Toast.LENGTH_LONG).show();
+                String contactName = findContactName(incomingNumber, context);
+                Toast.makeText(context, "Call from " + contactName, Toast.LENGTH_LONG).show();
                 SayCallerTTS.sayText("New Incoming Call. Please Answer.");
             }
         }
