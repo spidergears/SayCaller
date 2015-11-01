@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class PhoneStateReceiver extends BroadcastReceiver {
     private String TAG = "SayCaller.PhoneStateReceiver";
-
+    private static String oldState;
     public PhoneStateReceiver(){
     }
 
@@ -26,12 +26,17 @@ public class PhoneStateReceiver extends BroadcastReceiver {
         }
         try {
             String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-            Log.d(TAG, "CallState: " + state);
-            if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)){
-                String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-                String contactName = SayCallerUtils.findContactName(incomingNumber, context);
-                Toast.makeText(context, "Call from " + contactName, Toast.LENGTH_LONG).show();
-                SayCallerTTS.sayText("New Incoming Call. Please Answer.");
+            //Android lollipop fires duplicate broadcasts for phone state
+            //if phone state actually changed
+            if (!state.equals(oldState)) {
+                oldState = state;
+                Log.d(TAG, "CallState: " + state);
+                if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)) {
+                    String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+                    String contactName = SayCallerUtils.findContactName(incomingNumber, context);
+                    Toast.makeText(context, "Call from " + contactName, Toast.LENGTH_LONG).show();
+                    SayCallerTTS.sayText("New Incoming Call. Please Answer.");
+                }
             }
         }
         catch (Exception e) {

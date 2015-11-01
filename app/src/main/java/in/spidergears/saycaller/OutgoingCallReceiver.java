@@ -23,8 +23,14 @@ public class OutgoingCallReceiver extends BroadcastReceiver {
             Log.d("SayCaller.Inspector", "Extra_" + key + " -> " + bundle.get(key));
         }
         try {
-            String outgoingNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+            //get phoneNumber being called
+            String outgoingNumber = getResultData();
+            if (outgoingNumber == null) {
+                outgoingNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+            }
+            //get contactName
             String contactName = SayCallerUtils.findContactName(outgoingNumber, context);
+            //initiate TTS
             Toast.makeText(context, "Outgoing call to " + contactName, Toast.LENGTH_LONG).show();
             SayCallerTTS.sayText("Initiated new outgoing call.");
         }
