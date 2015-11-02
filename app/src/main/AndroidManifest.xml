@@ -23,6 +23,12 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".SayCallerTTS"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
         <receiver
             android:name=".PhoneStateReceiver"
             android:enabled="true"
@@ -32,17 +38,12 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".SayCallerTTS"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
-
         <receiver
             android:name=".BootCompletedReceiver"
             android:enabled="true"
             android:exported="true" >
         </receiver>
+
         <receiver
             android:name=".OutgoingCallReceiver"
             android:enabled="true"
@@ -51,6 +52,7 @@
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>
