@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
@@ -72,6 +73,9 @@ public class SayCallerTTS extends Service implements TextToSpeech.OnInitListener
         }
         else {
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null );
+        }
+        while(tts.isSpeaking()) {
+            SystemClock.sleep(100);
         }
         stopSelf();
     }
