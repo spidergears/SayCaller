@@ -32,7 +32,10 @@ public class OutgoingCallReceiver extends BroadcastReceiver {
             String contactName = SayCallerUtils.findContactName(outgoingNumber, context);
             //initiate TTS
             Toast.makeText(context, "Outgoing call to " + contactName, Toast.LENGTH_LONG).show();
-            SayCallerTTS.sayText("Initiated new outgoing call.");
+
+            Intent service = new Intent(context, SayCallerTTS.class);
+            service.putExtra("announcement", "Initiated new outgoing call.");
+            context.startService(service);
         }
         catch (Exception e) {
             Log.e(TAG, "SayCaller encountered exception while processing the broadcast: " + e.getLocalizedMessage());

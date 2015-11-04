@@ -35,7 +35,10 @@ public class PhoneStateReceiver extends BroadcastReceiver {
                     String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
                     String contactName = SayCallerUtils.findContactName(incomingNumber, context);
                     Toast.makeText(context, "Call from " + contactName, Toast.LENGTH_LONG).show();
-                    SayCallerTTS.sayText("New Incoming Call. Please Answer.");
+
+                    Intent service = new Intent(context, SayCallerTTS.class);
+                    service.putExtra("announcement", "New incoming call, please answer.");
+                    context.startService(service);
                 }
             }
         }
